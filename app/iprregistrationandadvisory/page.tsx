@@ -5,13 +5,47 @@ import Image from "next/image"
 import { ArrowLeft, CheckCircle, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BackgroundGradient } from "@/components/ui/background-gradient"
-import { Navbar } from "@/components/navbar"
+import {motion} from "framer-motion"
 
 export default function IPRRegistrationAndAdvisory() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Navbar />
       <main className="flex-1">
+         {/* HERO SECTION */}
+          <section className="w-full relative overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900">
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-20 left-20 w-72 h-72 rounded-full border-2 border-white"></div>
+              <div className="absolute bottom-32 right-32 w-96 h-96 rounded-full border border-white"></div>
+              <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full border border-white opacity-50"></div>
+            </div>
+  
+            <div className="container max-w-6xl mx-auto px-4 md:px-6 relative z-10 py-12 md:py-14">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col items-center justify-center space-y-6 text-center"
+              >
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
+                Our Services
+              </h1>
+              {/* <p className="text-xl md:text-xl text-cyan-300 font-light max-w-2xl">
+                Comprehensive Professional Solutions
+              </p> */}
+
+              <nav className="flex items-center justify-center space-x-2 pt-4">
+                <Link
+                  href="/"
+                  className="text-cyan-300 hover:text-cyan-200 transition-colors font-medium text-sm md:text-base"
+                >
+                  Home
+                </Link>
+                <span className="text-white/50">/</span>
+                <span className="text-white/80 font-medium text-sm md:text-base">Services</span>
+              </nav>
+            </motion.div>
+          </div>
+        </section>
         <section className="w-full py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 bg-grid-blue/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)]"></div>
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
@@ -87,34 +121,6 @@ export default function IPRRegistrationAndAdvisory() {
           </div>
         </section>
       </main>
-
-      <footer className="w-full border-t border-gray-200 py-6 md:py-0 bg-gray-50">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 md:h-16 px-4 md:px-6">
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Ritik Madnani & Associates. All rights reserved.
-          </p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link
-              href="/terms-of-service"
-              className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="/privacy-policy"
-              className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
-            >
-              Privacy Policy
-            </Link>
-          </nav>
-        </div>
-        <p className="text-xs text-gray-500 text-center mt-2">
-          Disclaimer: As per the guidelines of the Institute of Company Secretaries of India, we are not allowed to
-          solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about
-          us on your own accord and that there has been no form of solicitation, advertisement or inducement by us or
-          our members.
-        </p>
-      </footer>
     </div>
   )
 }

@@ -12,7 +12,6 @@ import { PhoneCall, Mail } from 'lucide-react';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Navbar />
       <main className="flex-1">
         <section className="w-full py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 bg-grid-blue/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)]"></div>
@@ -80,34 +79,6 @@ export default function Home() {
           responsibility whatsoever for such contents or claims by the Advertiser.
         </p>
       </main>
-
-      <footer className="w-full border-t border-gray-200 py-6 md:py-0 bg-gray-50">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 md:h-16 px-4 md:px-6">
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Ritik Madnani & Associates. All rights reserved.
-          </p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link
-              href="/terms-of-service"
-              className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="/privacy-policy"
-              className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
-            >
-              Privacy Policy
-            </Link>
-          </nav>
-        </div>
-        <p className="text-xs text-gray-500 text-center mt-2">
-          Disclaimer: As per the guidelines of the Institute of Company Secretaries of India, we are not allowed to
-          solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about
-          us on your own accord and that there has been no form of solicitation, advertisement or inducement by us or
-          our members.
-        </p>
-      </footer>
     </div>
   )
 }

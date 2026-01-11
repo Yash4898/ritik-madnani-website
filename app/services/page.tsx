@@ -21,7 +21,6 @@ const services = [
       "Partnership Firms",
       "Other Form of Organisation",
     ],
-    image: "/images/settingupbusiness.jpg",
   },
   {
     title: "Corporate Advisory & Secretarial Compliances",
@@ -36,7 +35,6 @@ const services = [
       "Conversion of companies, change in structure, capital, or management",
       "Maintenance of statutory registers, minutes, and ROC records",
     ],
-    image: "/images/corporate advisory.jpg",
   },
   {
     title: "SEBI & Listing Compliances",
@@ -52,7 +50,6 @@ const services = [
       "Drafting of policies as per SEBI mandates",
       "Registration with SEBI, RBI etc for Investment Advisors, Portfolio Managers, Research Analysts, Other SEBI registered intermediaries",
     ],
-    image: "/images/sebi.jpg",
   },
   {
     title: "FEMA & RBI Compliances",
@@ -65,7 +62,6 @@ const services = [
       "Liaison with Authorised Dealer Banks and RBI for compounding applications",
       "Registration and compliance support for NBFCs and overseas investments",
     ],
-    image: "/images/fema.jpg",
   },
   {
     title: "Advisory & Representation",
@@ -76,7 +72,6 @@ const services = [
       "Representation before Registrar of Companies (ROC), Regional Directors, and National Company Law Tribunal (NCLT)",
       "Legal opinions and advisory on Companies Act, SEBI, FEMA, and allied laws",
     ],
-    image: "/images/advisory.jpg",
   },
   {
     title: "IPR Registration and Advisory",
@@ -88,7 +83,6 @@ const services = [
       "Search Report, IP portfolio management and advisory for startups and MSMEs",
       "Brand strategy, IP due diligence, and advisory on infringement, enforcement, and commercialization of IP assets",
     ],
-    image: "/images/ipr.jpg",
   },
   {
     title: "Registrations & Ancillary Services",
@@ -105,7 +99,6 @@ const services = [
       "RERA Registration for real estate developers and agents",
       "ISO, Shops & Establishments, and other applicable registrations",
     ],
-    image: "/images/registration.jpg",
   },
   {
     title: "IEPF Services",
@@ -117,7 +110,6 @@ const services = [
       "Assistance in transferring shares/dividends to IEPF",
       "Support in filing claims for recovery of shares or amounts from IEPF Authority on behalf of shareholders",
     ],
-    image: "/images/iepf.png",
   },
   {
     title: "Due Diligence",
@@ -130,39 +122,14 @@ const services = [
       "Litigations and contractual obligations review",
       "Detailed reports with actionable insights for risk mitigation and strategic planning",
     ],
-    image: "/images/due delligence.png",
   },
 ]
 
 export default function ServicesPage() {
-  useEffect(() => {
-    window.history.scrollRestoration = "manual"
-
-    const savedScroll = sessionStorage.getItem("services-scroll-position")
-    if (savedScroll) {
-      const scrollPos = parseInt(savedScroll, 10)
-      setTimeout(() => {
-        window.scrollTo(0, scrollPos)
-        sessionStorage.removeItem("services-scroll-position")
-      }, 100)
-    }
-
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem("services-scroll-position", window.scrollY.toString())
-    }
-
-    window.addEventListener("beforeunload", handleBeforeUnload)
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload)
-    }
-  }, [])
-
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Navbar />
-
       <TracingBeam>
-        <main className="flex-1 w-full flex flex-col">
+        <main className="flex-1 w-full">
           
           {/* HERO SECTION */}
           <section className="w-full relative overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900">
@@ -171,40 +138,38 @@ export default function ServicesPage() {
               <div className="absolute bottom-32 right-32 w-96 h-96 rounded-full border border-white"></div>
               <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full border border-white opacity-50"></div>
             </div>
-
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-transparent"></div>
-
-            <div className="container max-w-6xl mx-auto px-4 md:px-6 relative z-10 py-32 md:py-40">
+  
+            <div className="container max-w-6xl mx-auto px-4 md:px-6 relative z-10 py-12 md:py-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-center justify-center space-y-6 text-center"
               >
-                <h1 className="text-6xl md:text-7xl font-bold tracking-tight text-white drop-shadow-lg">
-                  Our Services
-                </h1>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
+                Our Services
+              </h1>
+              {/* <p className="text-xl md:text-xl text-cyan-300 font-light max-w-2xl">
+                Comprehensive Professional Solutions
+              </p> */}
 
-                <p className="text-xl md:text-2xl text-cyan-300 font-light max-w-2xl">
-                  Comprehensive Professional Solutions
-                </p>
+              <nav className="flex items-center justify-center space-x-2 pt-4">
+                <Link
+                  href="/"
+                  className="text-cyan-300 hover:text-cyan-200 transition-colors font-medium text-sm md:text-base"
+                >
+                  Home
+                </Link>
+                <span className="text-white/50">/</span>
+                <span className="text-white/80 font-medium text-sm md:text-base">Services</span>
+              </nav>
+            </motion.div>
+          </div>
+        </section>
 
-                <nav className="flex items-center justify-center space-x-2 pt-4">
-                  <Link
-                    href="/"
-                    className="text-cyan-300 hover:text-cyan-200 transition-colors font-medium text-sm md:text-base"
-                  >
-                    Home
-                  </Link>
-                  <span className="text-white/50">/</span>
-                  <span className="text-white/80 font-medium text-sm md:text-base">Services</span>
-                </nav>
-              </motion.div>
-            </div>
-          </section>
 
           {/* SERVICES INTRO */}
-          <section className="w-full py-16 md:py-20 bg-white">
+          <section className="w-full py-16 md:py-20 bg-gray-50">
             <div className="container max-w-6xl mx-auto px-4 md:px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -213,10 +178,10 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 className="text-center max-w-3xl mx-auto space-y-4"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                  End-to-End Professional Services
+                <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                Comprehensive Professional Solutions
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-sm text-gray-700 leading-relaxed">
                   Comprehensive solutions tailored to meet all your corporate compliance, advisory, and governance needs
                 </p>
               </motion.div>
@@ -225,57 +190,12 @@ export default function ServicesPage() {
 
           {/* SERVICES GRID SECTION */}
           <section className="w-full py-12 md:py-20 bg-gray-50">
-            <div className="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container max-w-6xl mx-auto px-4 md:px-6">
               <DetailedServices services={services} />
             </div>
           </section>
-
         </main>
       </TracingBeam>
-
-      {/* FOOTER */}
-      <footer className="w-full border-t border-gray-200 py-8 md:py-10 bg-gray-50">
-  <div className="container max-w-6xl mx-auto px-4 md:px-6">
-    <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-      <p className="text-sm text-gray-600">
-        © {new Date().getFullYear()} Ritik Madnani & Associates. All rights reserved.
-      </p>
-      <nav className="flex gap-6 sm:gap-8">
-        <Link
-          href="/terms-of-service"
-          className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
-        >
-          Terms of Service
-        </Link>
-        <Link
-          href="/privacy-policy"
-          className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
-        >
-          Privacy Policy
-        </Link>
-      </nav>
-    </div>
-    
-    {/* Disclaimers Section */}
-    <div className="space-y-6 border-t border-gray-200 pt-8">
-      {/* Disclaimer 1 */}
-      <div className="space-y-2">
-        <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wide">Disclaimer </h4>
-        <p className="text-xs text-gray-600 leading-relaxed">
-          As per the guidelines of the Institute of Company Secretaries of India, we are not allowed to solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about us on your own accord and that there has been no form of solicitation, advertisement or inducement by us or our members.
-          <br/>
-          The contents or claims in the website issued by the author are the sole and exclusive responsibility of the Author. The Institute of Company Secretaries of India does not own any responsibility whatsoever for such contents or claims by the Author.
-        </p>
-      </div>
-
-      {/* Disclaimer 2 */}
-      <div className="space-y-2">
-        <p className="text-xs text-gray-600 leading-relaxed">
-        </p>
-      </div>
-    </div>
-  </div>
-      </footer>
     </div>
   )
 }

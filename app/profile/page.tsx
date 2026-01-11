@@ -34,10 +34,8 @@ export default function ProfilePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Navbar />
       <TracingBeam>
         <main className="flex-1 w-full">
-          
           {/* HERO SECTION */}
           <section className="w-full relative overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-blue-900">
             <div className="absolute inset-0 opacity-5">
@@ -48,17 +46,17 @@ export default function ProfilePage() {
 
             <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-transparent"></div>
 
-            <div className="container max-w-6xl mx-auto px-4 md:px-6 relative z-10 py-32 md:py-40">
+            <div className="container max-w-6xl mx-auto px-4 md:px-6 relative z-10 py-10 md:py-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-center justify-center space-y-6 text-center"
               >
-                <h1 className="text-6xl md:text-7xl font-bold tracking-tight text-white drop-shadow-lg">
+                <h1 className="text-6xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
                   CS Ritik Madnani
                 </h1>
-                
+
                 <nav className="flex items-center justify-center space-x-2 pt-4">
                   <Link 
                     href="/" 
@@ -72,6 +70,7 @@ export default function ProfilePage() {
               </motion.div>
             </div>
           </section>
+
 
           {/* PROFILE INTRO SECTION */}
           <section className="w-full py-20 md:py-28 bg-white">
@@ -165,7 +164,7 @@ export default function ProfilePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 uppercase tracking-tight"
+                className="text-4xl md:text-4xl font-bold text-gray-900 mb-4 uppercase tracking-tight"
               >
                 Special Assignments
               </motion.h2>
@@ -208,53 +207,8 @@ export default function ProfilePage() {
               </div>
             </div>
           </section>
-
         </main>
       </TracingBeam>
-
-      {/* FOOTER */}
-      <footer className="w-full border-t border-gray-200 py-8 md:py-10 bg-gray-50">
-  <div className="container max-w-6xl mx-auto px-4 md:px-6">
-    <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-      <p className="text-sm text-gray-600">
-        © {new Date().getFullYear()} Ritik Madnani & Associates. All rights reserved.
-      </p>
-      <nav className="flex gap-6 sm:gap-8">
-        <Link
-          href="/terms-of-service"
-          className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
-        >
-          Terms of Service
-        </Link>
-        <Link
-          href="/privacy-policy"
-          className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
-        >
-          Privacy Policy
-        </Link>
-      </nav>
-    </div>
-    
-    {/* Disclaimers Section */}
-    <div className="space-y-6 border-t border-gray-200 pt-8">
-      {/* Disclaimer 1 */}
-      <div className="space-y-2">
-        <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wide">Disclaimer </h4>
-        <p className="text-xs text-gray-600 leading-relaxed">
-          As per the guidelines of the Institute of Company Secretaries of India, we are not allowed to solicit work or advertise. By accessing this website, you acknowledge that you are seeking information about us on your own accord and that there has been no form of solicitation, advertisement or inducement by us or our members.
-          <br/>
-          The contents or claims in the website issued by the author are the sole and exclusive responsibility of the Author. The Institute of Company Secretaries of India does not own any responsibility whatsoever for such contents or claims by the Author.
-        </p>
-      </div>
-
-      {/* Disclaimer 2 */}
-      <div className="space-y-2">
-        <p className="text-xs text-gray-600 leading-relaxed">
-        </p>
-      </div>
-    </div>
-  </div>
-      </footer>
     </div>
   )
 }

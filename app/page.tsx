@@ -122,45 +122,39 @@ export default function Home() {
     </div>
   </div>
 </section>
-<section id="contact" className="w-full py-24 md:py-40 bg-slate-50">
-  <div className="container max-w-6xl mx-auto px-4 md:px-6">
+<section className="w-full py-24 md:py-40 bg-slate-50">
+  <div className="container max-w-6xl mx-auto px-4 md:px-6 mb-15">
     {/* Top heading + sub text */}
     <h1 className="text-5xl text-center text-slate-900 mb-10">
       Ready to Simplify Your Business
     </h1>
     <div className="w-full border-t border-slate-300 pb-10" />
-    <p className="text-center md:text-xl text-gray-700 max-w-2xl mx-auto mb-24">
+    <p className="text-center md:text-xl text-gray-700 max-w-2xl mx-auto mb-12">
     Have any questions or inquiries?
     </p>
-
-    {/* Main content (two columns) */}
-    <div className="grid gap-10 lg:grid-cols-2 items-start">
-      {/* Left: text + contact info */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="space-y-5"
+    <div className="flex flex-row justify-center  gap-4">
+      <Button
+        className="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white border-0"
+        asChild
       >
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600 mt-20">
-          Get in Touch
-        </h2>
-        <div>
-        <p className="text-gray-600 md:text-lg mt-2">
-        Feel free to contact us via phone or email  Feel free to contact us for expert financial advice and tailored solutions.
-        </p>
-        </div>
-      </motion.div>
+        <Link href="/about">More About Us
+        <ArrowRight className="ml-2 h-4 w-4" /></Link>
+      </Button>
 
-      {/* Right: form card */}
-      <div className="flex justify-center">
-        <div className="w-full max-w-md">
-          <ContactForm />
-        </div>
-      </div>
+      <Button
+        className="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white border-0"
+        asChild
+      >
+        <Link href="/contact">Write to Us
+        <ArrowRight className="ml-2 h-4 w-4" /></Link>
+      </Button>
     </div>
   </div>
+  <section className="py-2">
+
+</section>
+
+
 </section>
 
 </main>

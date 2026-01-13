@@ -1,111 +1,145 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown, ChevronUp } from "lucide-react"
-import { BackgroundGradient } from "@/components/ui/background-gradient"
+import Image from "next/image"
 import Link from "next/link"
+import { X } from "lucide-react"
 
-interface Service {
+export interface Service {
   title: string
   description: string
   details: string[]
+  image: string
 }
 
-interface DetailedServicesProps {
-  services: Service[]
+const serviceSlugMap: Record<string, string> = {
+  "Business Set up & Closure": "settingupofbusiness",
+  "Corporate Advisory & Secretarial Compliances": "corporateadvisoryandsecretarialcompliance",
+  "SEBI & Listing Compliances": "sebiandlistingcompliances",
+  "FEMA & RBI Compliances": "femaandrbicompliances",
+  "Advisory & Representation": "advisoryandrepresentation",
+  "IPR Registration and Advisory": "iprregistrationandadvisory",
+  "Registrations & Ancillary Services": "registrationsandancillaryservices",
+  "IEPF Services": "iepfservices",
+  "Due Diligence": "duediligence",
 }
 
-export function DetailedServices({ services }: DetailedServicesProps) {
-  const [expandedService, setExpandedService] = useState<number | null>(null)
+export function DetailedServices({ services }: { services: Service[] }) {
+  const [activeService, setActiveService] = useState<Service | null>(null)
 
-  const toggleService = (index: number) => {
-    setExpandedService(expandedService === index ? null : index)
-  }
+  /* 🔒 Lock scroll + ESC close */
+  useEffect(() => {
+    document.body.style.overflow = activeService ? "hidden" : "auto"
+
+    const escHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveService(null)
+    }
+
+    window.addEventListener("keydown", escHandler)
+    return () => window.removeEventListener("keydown", escHandler)
+  }, [activeService])
 
   return (
-    <section id="services" className="w-full py-24 md:py-32 relative bg-gray-50">
-      <div className="absolute inset-0 bg-grid-blue/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)]"></div>
-      <div className="container px-4 md:px-6 relative">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+    <div className="w-full">
+      {/* SERVICES GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-2"
+            key={service.title}
+            layoutId={`service-${service.title}`}
+            onClick={() => setActiveService(service)}
+            className="relative cursor-pointer rounded-xl bg-white border border-gray-200 p-6 shadow-md hover:-translate-y-1 transition"
           >
-            <div className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">Services</div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600">
-              Comprehensive Professional Services
-            </h2>
-            <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed">
-              End-to-end solutions for all your corporate compliance and governance needs
+            <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
+              {service.title}
+            </h3>
+
+            <p className="text-sm text-gray-600 line-clamp-3">
+              {service.description}
             </p>
           </motion.div>
-        </div>
-
-        <div className="grid gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <BackgroundGradient className="rounded-[22px] bg-white shadow-md border border-gray-100">
-                <div className="p-6">
-                  <div
-                    className="flex items-center justify-between cursor-pointer"
-                    onClick={() => toggleService(index)}
-                  >
-                    <div className="flex-1">
-                      <Link href={`/${service.title.toLowerCase().replace(/\s+/g, "").replace(/&/g, "and")}`}>
-                        <h3 className="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 transition-colors cursor-pointer">
-                          {service.title}
-                        </h3>
-                      </Link>
-                      <p className="text-gray-600">{service.description}</p>
-                    </div>
-                    <div className="ml-4 flex-shrink-0">
-                      {expandedService === index ? (
-                        <ChevronUp className="h-5 w-5 text-blue-600" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5 text-blue-600" />
-                      )}
-                    </div>
-                  </div>
-
-                  <AnimatePresence>
-                    {expandedService === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="mt-4 pt-4 border-t border-gray-200">
-                          <h4 className="font-semibold text-gray-800 mb-3">Our services include:</h4>
-                          <ul className="space-y-2">
-                            {service.details.map((detail, detailIndex) => (
-                              <li key={detailIndex} className="flex items-start gap-2">
-                                <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-teal-500 rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="text-gray-600 text-sm">{detail}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </BackgroundGradient>
-            </motion.div>
-          ))}
-        </div>
+        ))}
       </div>
-    </section>
+
+      {/* EXPANDED VIEW */}
+      <AnimatePresence mode="wait">
+        {activeService && (
+          <>
+            {/* OVERLAY */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveService(null)}
+            />
+
+            {/* MODAL */}
+            <motion.div
+              layoutId={`service-${activeService.title}`}
+              className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            >
+              <motion.div
+                className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ scale: 0.96 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.96 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* ❌ CLOSE BUTTON */}
+                <button
+                  onClick={() => setActiveService(null)}
+                  className="absolute right-4 top-4 z-20 rounded-full bg-black/60 p-2 text-white hover:bg-black"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* 🖼 THUMBNAIL */}
+                <div className="relative h-56 w-full">
+                  <Image
+                    src={activeService.image}
+                    alt={activeService.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                  <h2 className="text-2xl font-bold">
+                    {activeService.title}
+                  </h2>
+
+                  <p className="text-gray-700">
+                    {activeService.description}
+                  </p>
+
+                  <ul className="space-y-2 pt-3">
+                    {activeService.details.map((item, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-gray-600">
+                        <span className="mt-1 h-1.5 w-1.5 bg-blue-600 rounded-full" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="pt-6 text-right">
+                    <Link
+                      href={`/${serviceSlugMap[activeService.title]}`}
+                      className="inline-block rounded-lg bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 px-6 py-2 text-sm font-semibold text-white"
+                    >
+                      Read More
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }

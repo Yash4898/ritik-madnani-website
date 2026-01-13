@@ -9,8 +9,15 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Ritik Madnani - Company Secretary",
-  description: "Professional Company Secretary services by Ritik Madnani",
-    generator: 'v0.app'
+  description: "Practising Company Secretary in Jalgaon, India. CS services for businesses and startups.",
+  keywords: [
+    "Top CS Firms In Jalgaon",
+    "CS Firms In Jalgaon",
+    "Company Secretaries In Jalgaon",
+    "Practising Company Secretary",
+    "Jalgaon",
+    "Ritik Madnani"
+  ],
 }
 
 export default function RootLayout({

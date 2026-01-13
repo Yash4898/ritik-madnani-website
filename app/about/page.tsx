@@ -82,7 +82,7 @@ export default function AboutPage() {
           </section>
 
           {/* VISION & MISSION SECTION */}
-          <section className="w-full py-20 md:py-28 bg-gray-50">
+          {/* <section className="w-full py-20 md:py-28 bg-gray-50">
             <div className="container max-w-6xl mx-auto px-4 md:px-6">
               <motion.h2
                 initial={{ opacity: 0, y: -20 }}
@@ -132,7 +132,7 @@ export default function AboutPage() {
                 </motion.div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* OFFICE STRUCTURE SECTION */}
           <section className="w-full py-20 md:py-28 bg-white">

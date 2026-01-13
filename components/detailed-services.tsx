@@ -1,10 +1,18 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 import Link from "next/link"
+import { X } from "lucide-react"
 
-// Service slug mapping - Maps service titles to their folder routes
+export interface Service {
+  title: string
+  description: string
+  details: string[]
+  image: string
+}
+
 const serviceSlugMap: Record<string, string> = {
   "Business Set up & Closure": "settingupofbusiness",
   "Corporate Advisory & Secretarial Compliances": "corporateadvisoryandsecretarialcompliance",
@@ -17,164 +25,121 @@ const serviceSlugMap: Record<string, string> = {
   "Due Diligence": "duediligence",
 }
 
-export interface Service {
-  title: string
-  description: string
-  details: string[]
-}
+export function DetailedServices({ services }: { services: Service[] }) {
+  const [activeService, setActiveService] = useState<Service | null>(null)
 
-export interface DetailedServicesProps {
-  services: Service[]
-}
+  /* 🔒 Lock scroll + ESC close */
+  useEffect(() => {
+    document.body.style.overflow = activeService ? "hidden" : "auto"
 
-export function DetailedServices({ services }: DetailedServicesProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+    const escHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveService(null)
+    }
+
+    window.addEventListener("keydown", escHandler)
+    return () => window.removeEventListener("keydown", escHandler)
+  }, [activeService])
 
   return (
     <div className="w-full">
-      {/* Grid with card hover effect */}
+      {/* SERVICES GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service, index) => {
-          const slug = serviceSlugMap[service.title] || service.title.toLowerCase().replace(/\s+/g, "").replace(/&/g, "and")
-          
-          return (
-            <div
-              key={service.title}
-              className="relative group"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              {/* Gradient border effect on hover */}
-              <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
-              
-              <Link href={`/${slug}`}>
-                <motion.div
-                  className="relative h-full rounded-xl p-6 bg-white border border-gray-200 shadow-md overflow-hidden cursor-pointer"
-                  initial={{ borderColor: "rgba(229, 231, 235, 1)" }}
-                  animate={{
-                    borderColor: hoveredIndex === index ? "rgba(59, 130, 246, 0.5)" : "rgba(229, 231, 235, 1)",
-                    y: hoveredIndex === index ? -5 : 0,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="relative z-10">
-                    {/* Title with gradient effect */}
-                    <h3 className="text-xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
-                      {service.title}
-                    </h3>
+        {services.map((service) => (
+          <motion.div
+            key={service.title}
+            layoutId={`service-${service.title}`}
+            onClick={() => setActiveService(service)}
+            className="relative cursor-pointer rounded-xl bg-white border border-gray-200 p-6 shadow-md hover:-translate-y-1 transition"
+          >
+            <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
+              {service.title}
+            </h3>
 
-                    {/* Description */}
-                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">
-                      {service.description}
-                    </p>
-
-                    {/* Hover indicator */}
-                    <div className="flex items-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity text-xs font-medium">
-                      Learn more
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.div>
-              </Link>
-            </div>
-          )
-        })}
+            <p className="text-sm text-gray-600 line-clamp-3">
+              {service.description}
+            </p>
+          </motion.div>
+        ))}
       </div>
+
+      {/* EXPANDED VIEW */}
+      <AnimatePresence mode="wait">
+        {activeService && (
+          <>
+            {/* OVERLAY */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveService(null)}
+            />
+
+            {/* MODAL */}
+            <motion.div
+              layoutId={`service-${activeService.title}`}
+              className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            >
+              <motion.div
+                className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ scale: 0.96 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.96 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* ❌ CLOSE BUTTON */}
+                <button
+                  onClick={() => setActiveService(null)}
+                  className="absolute right-4 top-4 z-20 rounded-full bg-black/60 p-2 text-white hover:bg-black"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* 🖼 THUMBNAIL */}
+                <div className="relative h-56 w-full">
+                  <Image
+                    src={activeService.image}
+                    alt={activeService.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                  <h2 className="text-2xl font-bold">
+                    {activeService.title}
+                  </h2>
+
+                  <p className="text-gray-700">
+                    {activeService.description}
+                  </p>
+
+                  <ul className="space-y-2 pt-3">
+                    {activeService.details.map((item, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-gray-600">
+                        <span className="mt-1 h-1.5 w-1.5 bg-blue-600 rounded-full" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="pt-6 text-right">
+                    <Link
+                      href={`/${serviceSlugMap[activeService.title]}`}
+                      className="inline-block rounded-lg bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 px-6 py-2 text-sm font-semibold text-white"
+                    >
+                      Read More
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
-
-
-
-
-// "use client"
-
-// import { motion } from "framer-motion"
-// import Link from "next/link"
-
-// // Service slug mapping - Maps service titles to their folder routes
-// const serviceSlugMap: Record<string, string> = {
-//   "Business Set up & Closure": "settingupofbusiness",
-//   "Corporate Advisory & Secretarial Compliances": "corporateadvisoryandsecretarialcompliance",
-//   "SEBI & Listing Compliances": "sebiandlistingcompliances",
-//   "FEMA & RBI Compliances": "femaandrbicompliances",
-//   "Advisory & Representation": "advisoryandrepresentation",
-//   "IPR Registration and Advisory": "iprregistrationandadvisory",
-//   "Registrations & Ancillary Services": "registrationsandancillaryservices",
-//   "IEPF Services": "iepfservices",
-//   "Due Diligence": "duediligence",
-// }
-
-// export interface Service {
-//   title: string
-//   description: string
-//   details: string[]
-// }
-
-// export interface DetailedServicesProps {
-//   services: Service[]
-// }
-
-// export function DetailedServices({ services }: DetailedServicesProps) {
-//   return (
-//     <div className="w-full relative">
-//       {/* Grid with overlay card style */}
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 lg:px-0">
-//         {services.map((service, index) => {
-//           // Get the slug from mapping, or use lowercase version as fallback
-//           const slug = serviceSlugMap[service.title] || service.title.toLowerCase().replace(/\s+/g, "").replace(/&/g, "and")
-          
-//           return (
-//             <motion.div
-//               key={service.title}
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//               transition={{ duration: 0.6, delay: index * 0.12 }}
-//               className="h-full"
-//             >
-//               <Link href={`/${slug}`}>
-//                 {/* OVERLAY CARD STYLE */}
-//                 <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden cursor-pointer group shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-
-//                   {/* Dark Overlay Gradient - Bottom to Top */}
-//                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-
-//                   {/* Content - Positioned at bottom */}
-//                   <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-//                     <motion.div
-//                       initial={{ opacity: 0, y: 10 }}
-//                       whileInView={{ opacity: 1, y: 0 }}
-//                       transition={{ duration: 0.5, delay: index * 0.12 + 0.2 }}
-//                     >
-//                       {/* Title */}
-//                       <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-//                         {service.title}
-//                       </h3>
-
-//                       {/* Description/Subtitle */}
-//                       <p className="text-sm md:text-base text-gray-100 leading-relaxed line-clamp-2">
-//                         {service.description}
-//                       </p>
-//                     </motion.div>
-//                   </div>
-
-//                   {/* Hover Arrow Indicator */}
-//                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-//                     <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-colors">
-//                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-//                       </svg>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </Link>
-//             </motion.div>
-//           )
-//         })}
-//       </div>
-//     </div>
-//   )
-// }

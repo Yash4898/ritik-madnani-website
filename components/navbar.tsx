@@ -9,29 +9,43 @@ import { Menu, X, ChevronDown, Mail, PhoneCall } from "lucide-react"
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about", hasDropdown: true },
-  { label: "Services", href: "/services", hasDropdown: true},
+  { label: "Services", href: "/services", hasDropdown: true },
   { label: "Expertise", href: "/expertise" },
-  // { label: "Blog", href: "/blog" },
 ]
 
 const AboutDropdownItems = [
   { label: "About Us", href: "/about" },
-  { label: "Profile", href: "/profile"},
+  { label: "Profile", href: "/profile" },
   { label: "Mission and Vision", href: "/mission-vision" },
-  // { label: "Expertise & Experience", href: "/expertise" },
 ]
 
 const ServicesDropdownItems = [
-  { label: "Business Set up & Closure", href: "/settingupofbusiness"},
-  { label: "Corporate Advisory & Secretarial Compliances", href: "/corporateadvisoryandsecretarialcompliance"},
-  { label: "SEBI & Listing Compliances", href: "/sebiandlistingcompliances"},
-  { label: "FEMA & RBI Compliances", href: "/femaandrbicompliances"},
-  { label: "Advisory & Representation", href: "/advisoryandrepresentation"},
-  { label: "IPR Registration and Advisory", href: "/iprregistrationandadvisory"},
-  { label: "Registrations & Ancillary Services", href: "/registrationsandancillaryservices"},
-  { label: "IEPF Services", href: "/iepfservices"},
-  { label: "Due Diligence", href: "/duediligence"},
+  { label: "Business Set up & Closure", href: "/settingupofbusiness" },
+  { label: "Corporate Advisory & Secretarial Compliances", href: "/corporateadvisoryandsecretarialcompliance" },
+  { label: "SEBI & Listing Compliances", href: "/sebiandlistingcompliances" },
+  { label: "FEMA & RBI Compliances", href: "/femaandrbicompliances" },
+  { label: "Advisory & Representation", href: "/advisoryandrepresentation" },
+  { label: "IPR Registration and Advisory", href: "/iprregistrationandadvisory" },
+  { label: "Registrations & Ancillary Services", href: "/registrationsandancillaryservices" },
+  { label: "IEPF Services", href: "/iepfservices" },
+  { label: "Due Diligence", href: "/duediligence" },
 ]
+
+// Dropdown config for easy customization
+const dropdownConfig = {
+  About: {
+    width: "w-44",
+    align: "left-0",
+    itemClass: "text-sm py-3",
+    layout: "gap-x-6 gap-y-2 p-4",
+  },
+  Services: {
+    width: "w-56",
+    align: "left-0",
+    itemClass: "text-sm py-3",
+    layout: "gap-x-6 gap-y-2 p-4",
+  },
+}
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,21 +61,24 @@ export function Navbar() {
 
   return (
     <header
-    className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
-      scrolled ? "bg-white/90 border-b border-gray-200" : "bg-transparent"
-    }`}
-  >
-    <div className="flex items-center justify-end gap-4 px-6 py-3 bg-gray-50">
-    <div className="flex items-center gap-2 px-20 whitespace-nowrap">
-      <PhoneCall size={18} />
-      <span className="text-sm font-medium">+91 9503716686</span>
-      <br/>
-      <div className="flex items-center gap-2 whitespace-nowrap">
-      <Mail size={18}/>
-      <span className="text-sm font-medium"> csritikmadnani@gmail.com</span>
+      className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
+        scrolled ? "bg-white/90 border-b border-gray-200" : "bg-transparent"
+      }`}
+    >
+      {/* Top contact bar */}
+      <div className="flex items-center justify-end gap-4 px-6 py-3 bg-gray-50">
+        <div className="flex items-center gap-2 px-20 whitespace-nowrap">
+          <PhoneCall size={18} />
+          <span className="text-sm font-medium">+91 9503716686</span>
+          <br />
+          <div className="flex items-center gap-2 whitespace-nowrap">
+            <Mail size={18} />
+            <span className="text-sm font-medium"> csritikmadnani@gmail.com</span>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
+
+      {/* Main navbar */}
       <div className="container flex h-18 items-center justify-between">
         <Link href="/" className="flex flex-col items-start gap-1">
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 mt-4">
@@ -87,22 +104,33 @@ export function Navbar() {
 
               {/* Desktop Dropdown */}
               {item.hasDropdown && (
-                <div className="absolute left-0 mt-0 w-56 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 origin-top">
-                  {(item.label === "Services" ? ServicesDropdownItems : AboutDropdownItems).map((dropdownItem) => (
-                    <Link
-                      key={dropdownItem.href}
-                      href={dropdownItem.href}
-                      className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium border-b border-gray-100 last:border-b-0 transition-colors text-lg"
-                    >
-                      {dropdownItem.label}
-                    </Link>
-                  ))}
+                <div
+                  className={`absolute mt-5 z-10 bg-white border border-gray-200 rounded-lg shadow-xl
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 origin-top
+                  ${dropdownConfig[item.label as "About" | "Services"].width}
+                  ${dropdownConfig[item.label as "About" | "Services"].align}`}
+                >
+                  <div className={dropdownConfig[item.label as "About" | "Services"].layout}>
+                    {(item.label === "Services" ? ServicesDropdownItems : AboutDropdownItems).map(
+                      (dropdownItem) => (
+                        <Link
+                          key={dropdownItem.href}
+                          href={dropdownItem.href}
+                          className={`block rounded-md text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors
+                          ${dropdownConfig[item.label as "About" | "Services"].itemClass}`}
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      )
+                    )}
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </nav>
 
+        {/* Right buttons */}
         <div className="flex items-center gap-4">
           <Button
             className="hidden md:flex bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white border-0"
@@ -141,18 +169,20 @@ export function Navbar() {
                   </Link>
                   {item.hasDropdown && (
                     <button
-                    onClick={() =>{
-                    if(item.label === "Services"){
-                      setIsServicesDropdownOpen(!isServicesDropdownOpen)
-                    }else{
-                      setIsDropdownOpen(!isDropdownOpen)
-                    }
-                  }}
+                      onClick={() => {
+                        if (item.label === "Services") {
+                          setIsServicesDropdownOpen(!isServicesDropdownOpen)
+                        } else {
+                          setIsDropdownOpen(!isDropdownOpen)
+                        }
+                      }}
                       className="p-2"
                     >
                       <ChevronDown
                         className={`h-4 w-4 transition-transform ${
-                          (item.label === "Services" ? isServicesDropdownOpen : isDropdownOpen) ? "rotate-180" : ""
+                          (item.label === "Services" ? isServicesDropdownOpen : isDropdownOpen)
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -160,25 +190,28 @@ export function Navbar() {
                 </div>
 
                 {/* Mobile Dropdown */}
-                {item.hasDropdown && (item.label === "Services" ? isServicesDropdownOpen : isDropdownOpen) && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="pl-4 flex flex-col gap-2 bg-gray-50 rounded py-2"
-                  >
-                    {(item.label === "Services" ? ServicesDropdownItems : AboutDropdownItems).map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.href}
-                        href={dropdownItem.href}
-                        className="text-sm py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {dropdownItem.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
+                {item.hasDropdown &&
+                  (item.label === "Services" ? isServicesDropdownOpen : isDropdownOpen) && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="pl-4 flex flex-col gap-2 bg-gray-50 rounded py-2"
+                    >
+                      {(item.label === "Services" ? ServicesDropdownItems : AboutDropdownItems).map(
+                        (dropdownItem) => (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className="text-sm py-2 text-gray-700 hover:text-blue-600 transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        )
+                      )}
+                    </motion.div>
+                  )}
               </div>
             ))}
 

@@ -1,10 +1,10 @@
 "use client"
 
-import { Navbar } from "@/components/navbar"
 import { motion } from "framer-motion"
 import { CardHoverEffect } from "@/components/ui/card-hover-effect"
 import Link from "next/link"
 import { TracingBeam } from "@/components/ui/tracing-beam"
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 
 export const expertise = [
   {
@@ -95,8 +95,8 @@ export default function ExpertisePage() {
                 viewport={{ once: true }}
                 className="text-center max-w-3xl mx-auto space-y-4"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                  Areas of Specialization
+                <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                  <TextGenerateEffect words="Area of Specialization"/>
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
                   Specialized knowledge and experience in key corporate and regulatory areas

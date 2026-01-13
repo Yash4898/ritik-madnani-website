@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Target, Eye } from "lucide-react"
 import Link from "next/link"
 import { TracingBeam } from "@/components/ui/tracing-beam"
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 
 export default function MissionVisionPage() {
   return (
@@ -27,7 +28,7 @@ export default function MissionVisionPage() {
                 transition={{ duration: 0.8 }}
                 className="flex flex-col items-center justify-center space-y-6 text-center"
               >
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
+                <h1 className="text-6xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
                   Mission & Vision
                 </h1>
 
@@ -57,8 +58,8 @@ export default function MissionVisionPage() {
                 viewport={{ once: true }}
                 className="text-center max-w-3xl mx-auto space-y-4"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                  Our Purpose
+                <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                  <TextGenerateEffect words="Our Purpose"/>
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
                   The principles that guide our commitment to excellence, integrity, and client success
@@ -69,7 +70,7 @@ export default function MissionVisionPage() {
 
           {/* MISSION & VISION CARDS */}
         <section className="w-full py-20 md:py-28 bg-white">
-  <div className="container max-w-6xl mx-auto px-4 md:px-6 space-y-24">
+        <div className="container max-w-6xl mx-auto px-4 md:px-6 space-y-24">
 
     {/* MISSION */}
     <motion.div
@@ -85,7 +86,7 @@ export default function MissionVisionPage() {
           <div className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 p-3">
             <Target className="h-5 w-5 text-white" />
           </div>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h3 className="text-4xl md:text-3xl font-bold text-gray-900">
             Our Mission
           </h3>
         </div>
@@ -141,7 +142,7 @@ export default function MissionVisionPage() {
           <div className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 p-3">
             <Eye className="h-5 w-5 text-white" />
           </div>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h3 className="text-4xl md:text-3xl font-bold text-gray-900">
             Our Vision
           </h3>
         </div>

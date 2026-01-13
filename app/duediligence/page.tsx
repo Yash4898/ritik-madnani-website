@@ -28,9 +28,9 @@ export default function DueDiligence() {
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
                 Our Services
               </h1>
-              {/* <p className="text-xl md:text-xl text-cyan-300 font-light max-w-2xl">
+              <p className="text-xl md:text-xl text-gray-200 font-light max-w-2xl">
                 Comprehensive Professional Solutions
-              </p> */}
+              </p>
 
               <nav className="flex items-center justify-center space-x-2 pt-4">
                 <Link
@@ -47,7 +47,6 @@ export default function DueDiligence() {
         </section>
 
         <section className="w-full py-24 md:py-32 overflow-hidden relative">
-          <div className="absolute inset-0 bg-grid-blue/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)]"></div>
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
             <div className="h-[40rem] w-[40rem] bg-gradient-to-r from-blue-100/40 to-teal-100/40 rounded-full blur-3xl"></div>
           </div>

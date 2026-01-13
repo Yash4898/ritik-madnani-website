@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { TracingBeam } from "@/components/ui/tracing-beam"
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 
 export default function AboutPage() {
   return (
@@ -56,8 +57,8 @@ export default function AboutPage() {
                 className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
               >
                 <div className="flex flex-col justify-center space-y-4">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                    Ritik Madnani & Associates
+                  <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                    <TextGenerateEffect words="RITIK MADNANI & ASSOCIATES"/>
                   </h2>
                   
                   <p className="text-base md:text-sm text-gray-700 leading-relaxed">
@@ -88,9 +89,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-4xl font-bold text-gray-900 mb-16 text-center uppercase tracking-tight"
+                className="text-4xl md:text-3xl font-bold text-gray-900 mb-16 text-center uppercase tracking-tight"
               >
-                VISION & MISSION
+              <TextGenerateEffect words="VISION & MISSION"/>
               </motion.h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -103,11 +104,11 @@ export default function AboutPage() {
                 >
                   <div className="flex items-start space-x-3 mb-4">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">V</span>
+                      <span className="text-white font-bold text-lg">V</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900">Vision</h2>
+                    <h2 className="text-xl font-bold text-gray-900">Vision</h2>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-700 md:text-sm leading-relaxed">
                     A firm to be progressively recognized for its quality, transparency, strong credibility, and impartiality and enhancing versatile competency for all its services.
                   </p>
                 </motion.div>
@@ -121,11 +122,11 @@ export default function AboutPage() {
                 >
                   <div className="flex items-start space-x-3 mb-4">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">M</span>
+                      <span className="text-white font-bold text-lg">M</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900">Mission</h2>
+                    <h2 className="text-xl font-bold text-gray-900">Mission</h2>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-700 md:text-sm leading-relaxed">
                     To provide quality services within a fixed frame of time, and providing client satisfaction with utmost confidentiality, diligence and prudence.
                   </p>
                 </motion.div>
@@ -146,7 +147,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                     className="text-4xl md:text-4xl font-bold text-gray-900 mb-8 uppercase tracking-tight"
                   >
-                    OFFICE STRUCTURE
+                    <TextGenerateEffect words="OFFICE STRUCTURE"/>
                   </motion.h2>
                   <motion.p
                     initial={{ opacity: 0 }}

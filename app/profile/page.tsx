@@ -114,17 +114,16 @@ export default function ProfilePage() {
                   className="lg:col-span-2 space-y-6"
                 >
                   <div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
                       About CS Ritik Madnani
                     </h2>
-                    <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-teal-500 rounded"></div>
                   </div>
 
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base md:text-sm text-gray-700 leading-relaxed">
                     CS Ritik Madnani is an Associate Member of the Institute of Company Secretaries of India (ICSI), possessing over 4 years of extensive experience in corporate legal advisory, secretarial audit, listing compliances, and allied legal areas.
                   </p>
 
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base md:text-sm text-gray-700 leading-relaxed">
                     He specializes in providing end-to-end guidance to companies throughout their business lifecycle, including incorporation, structuring, capital raising, and exit strategies, FEMA Compliances and IPR Registrations and advisory.
                   </p>
 
@@ -164,7 +163,7 @@ export default function ProfilePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-4xl font-bold text-gray-900 mb-4 uppercase tracking-tight"
+                className="text-4xl md:text-3xl font-bold text-gray-900 mb-4 uppercase tracking-tight"
               >
                 Special Assignments
               </motion.h2>
@@ -174,7 +173,7 @@ export default function ProfilePage() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-gray-700 text-lg mb-12 max-w-3xl"
+                className="text-gray-700 text-lg mb-12 max-w-4xl"
               >
                 CS Ritik Madnani has handled the following special assignments during his professional career:
               </motion.p>

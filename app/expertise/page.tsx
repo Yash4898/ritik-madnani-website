@@ -95,7 +95,7 @@ export default function ExpertisePage() {
                 viewport={{ once: true }}
                 className="text-center max-w-3xl mx-auto space-y-4"
               >
-                <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl md:text-3xl font-bold text-gray-900">
                   <TextGenerateEffect words="Area of Specialization"/>
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">

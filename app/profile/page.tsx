@@ -114,7 +114,7 @@ export default function ProfilePage() {
                   className="lg:col-span-2 space-y-6"
                 >
                   <div>
-                    <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                    <h2 className="text-3xl md:text-3xl font-bold text-gray-900">
                       About CS Ritik Madnani
                     </h2>
                   </div>
@@ -163,7 +163,7 @@ export default function ProfilePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-3xl font-bold text-gray-900 mb-4 uppercase tracking-tight"
+                className="text-3xl md:text-3xl font-bold text-gray-900 text-center mb-4 uppercase tracking-tight"
               >
                 Special Assignments
               </motion.h2>
@@ -173,7 +173,7 @@ export default function ProfilePage() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-gray-700 text-lg mb-12 max-w-4xl"
+                className="text-gray-700 text-sm text-center mb-12"
               >
                 CS Ritik Madnani has handled the following special assignments during his professional career:
               </motion.p>
@@ -194,10 +194,10 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-xl md:text-lg font-semibold text-gray-900 mb-2">
                         {assignment.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-gray-700 text-sm leading-relaxed">
                         {assignment.description}
                       </p>
                     </div>

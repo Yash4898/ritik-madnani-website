@@ -12,6 +12,8 @@ export const metadata = {
   description: "Practising Company Secretary in Jalgaon, India. CS services for businesses and startups.",
   keywords: [
     "Top CS Firms In Jalgaon",
+    "Coporate Law",
+    "Legal Advisory",
     "CS Firms In Jalgaon",
     "Company Secretaries In Jalgaon",
     "Practising Company Secretary",

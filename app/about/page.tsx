@@ -57,7 +57,7 @@ export default function AboutPage() {
                 className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
               >
                 <div className="flex flex-col justify-center space-y-4">
-                  <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                  <h2 className="text-3xl md:text-3xl font-bold text-gray-900">
                     <TextGenerateEffect words="RITIK MADNANI & ASSOCIATES"/>
                   </h2>
                   
@@ -130,53 +130,55 @@ export default function AboutPage() {
                     To provide quality services within a fixed frame of time, and providing client satisfaction with utmost confidentiality, diligence and prudence.
                   </p>
                 </motion.div>
-              </div>
-            </div>
-          </section> */}
+                    </div>
+                  </div>
+                </section> */}
 
-          {/* OFFICE STRUCTURE SECTION */}
-          <section className="w-full py-20 md:py-28 bg-white">
-            <div className="container max-w-6xl mx-auto px-4 md:px-6">
+            {/* OFFICE STRUCTURE SECTION */}
+            <section className="w-full py-20 md:py-28 bg-white">
+              <div className="container max-w-6xl mx-auto px-4 md:px-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                {/* LEFT SIDE - TEXT CONTENT */}
-                <div className="flex flex-col justify-center">
-                  <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-4xl md:text-4xl font-bold text-gray-900 mb-8 uppercase tracking-tight"
-                  >
-                    <TextGenerateEffect words="OFFICE STRUCTURE"/>
-                  </motion.h2>
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="text-gray-700 text-base md:text-sm leading-relaxed max-w-2xl"
-                  >
-                    The Firm comprises richly experienced, hardworking and knowledgeable staff and qualified Company Secretaries well versed with subjective and thorough knowledge in respective fields and backed by approximately Ten (may vary time to time) CS management trainees who are adaptable and well known with company law matters & their compliances. Further a staff managing the office with Accounts and HR department. The firm is basically run, managed and controlled in the hands of Mr. Ritik Madnani and our dedicated team.
-                  </motion.p>
-                </div>
 
-                {/* RIGHT SIDE - IMAGE */}
-                <div className="flex justify-center md:justify-end">
-                  <motion.img
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    src="/images/office.jpg" 
-                    alt="Office Structure"
-                    className="rounded-lg shadow-xl w-full max-w-sm md:max-w-md object-cover h-80 md:h-96"
-                  />
-                </div>
-              </div>
+            {/* IMAGE - LEFT ON DESKTOP */}
+            <div className="order-1 md:order-1 flex justify-center md:justify-start">
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                src="/images/office.jpg"
+                alt="Office Structure"
+                className="rounded-lg shadow-xl w-full max-w-sm md:max-w-md object-cover h-80 md:h-96"
+              />
             </div>
-          </section>
-        </main>
-      </TracingBeam>
+
+            {/* TEXT - RIGHT ON DESKTOP */}
+            <div className="order-2 md:order-2 flex flex-col justify-center">
+              <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-3xl font-bold text-gray-900 mb-8 uppercase tracking-tight"
+              >
+                <TextGenerateEffect words="OFFICE STRUCTURE" />
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-gray-700 text-base md:text-sm leading-relaxed max-w-2xl"
+              >
+                The Firm comprises richly experienced, hardworking and knowledgeable staff and qualified Company Secretaries well versed with subjective and thorough knowledge in respective fields and backed by approximately Ten (may vary time to time) CS management trainees who are adaptable and well known with company law matters & their compliances. Further a staff managing the office with Accounts and HR department. The firm is basically run, managed and controlled in the hands of Mr. Ritik Madnani and our dedicated team.
+              </motion.p>
+            </div>
+            </div>
+            </div>
+            </section>
+          </main>
+        </TracingBeam>
     </div>
   )
 }

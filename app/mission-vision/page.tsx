@@ -58,7 +58,7 @@ export default function MissionVisionPage() {
                 viewport={{ once: true }}
                 className="text-center max-w-3xl mx-auto space-y-4"
               >
-                <h2 className="text-4xl md:text-3xl font-bold text-gray-900">
+                <h2 className="text-4xl md:text-4xl font-bold text-gray-900">
                   <TextGenerateEffect words="Our Purpose"/>
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
@@ -84,11 +84,11 @@ export default function MissionVisionPage() {
       <div className="flex flex-col justify-center space-y-5">
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 p-3">
-            <Target className="h-5 w-5 text-white" />
+            <Target className="h-4 w-4 text-white" />
           </div>
-          <h3 className="text-4xl md:text-3xl font-bold text-gray-900">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             Our Mission
-          </h3>
+          </h2>
         </div>
 
         <p className="text-base md:text-sm text-gray-700 leading-relaxed">
@@ -140,9 +140,9 @@ export default function MissionVisionPage() {
       <div className="flex flex-col justify-center space-y-5 order-1 md:order-2">
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 p-3">
-            <Eye className="h-5 w-5 text-white" />
+            <Eye className="h-4 w-4 text-white" />
           </div>
-          <h3 className="text-4xl md:text-3xl font-bold text-gray-900">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
             Our Vision
           </h3>
         </div>

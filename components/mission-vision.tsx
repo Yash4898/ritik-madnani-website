@@ -33,9 +33,9 @@ export function MissionVision() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="rounded-full bg-gradient-to-r from-blue-600 to-teal-500 p-3">
-                <Target className="h-6 w-6 text-white" />
+                <Target className="h-4 w-4 text-white" />
               </div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600">
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600">
                 Our Mission
               </h3>
             </div>
@@ -58,9 +58,9 @@ export function MissionVision() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="rounded-full bg-gradient-to-r from-blue-600 to-teal-500 p-3">
-                <Eye className="h-6 w-6 text-white" />
+                <Eye className="h-4 w-4 text-white" />
               </div>
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600">
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-teal-600">
                 Our Vision
               </h3>
             </div>

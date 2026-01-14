@@ -118,14 +118,16 @@ export function DetailedServices({ services }: { services: Service[] }) {
                   </p>
 
                   <ul className="space-y-2 pt-3">
-                    {activeService.details.map((item, i) => (
-                      <li key={i} className="flex gap-2 text-sm text-gray-600">
-                        <span className="mt-1 h-1.5 w-1.5 bg-blue-600 rounded-full" />
+                  {activeService.details.map((item, i) => (
+                    <li key={i} className="flex gap-2 text-sm text-gray-600">
+                      <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-blue-600 shrink-0" />
+                      <span className="flex-1">
                         {item}
-                      </li>
-                    ))}
-                  </ul>
-
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                
                   <div className="pt-6 text-right">
                     <Link
                       href={`/${serviceSlugMap[activeService.title]}`}

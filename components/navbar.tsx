@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown, Mail, PhoneCall } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -52,7 +53,14 @@ export function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname();
 
+  useEffect(() => {
+    setIsMenuOpen(false)
+    setIsDropdownOpen(false)
+    setIsServicesDropdownOpen(false)
+  }, [pathname])
+  
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
@@ -61,22 +69,26 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
-        scrolled ? "bg-white/90 border-b border-gray-200" : "bg-transparent"
-      }`}
-    >
-      {/* Top contact bar */}
-      <div className="flex items-center justify-end gap-4 px-6 py-3 bg-gray-50">
-        <div className="flex items-center gap-2 px-20 whitespace-nowrap">
-          <PhoneCall size={18} />
-          <span className="text-sm font-medium">+91 9503716686</span>
-          <br />
-          <div className="flex items-center gap-2 whitespace-nowrap">
-            <Mail size={18} />
-            <span className="text-sm font-medium"> csritikmadnani@gmail.com</span>
-          </div>
-        </div>
+  className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
+    scrolled ? "bg-white/90 border-b border-gray-200" : "bg-transparent"
+  }`}
+>
+  {/* Top contact bar */}
+  <div className="flex justify-end bg-gray-50 px-4 py-2">
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm md:text-base">
+      <div className="flex items-center gap-1">
+        <PhoneCall className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+        <span className="font-small">+91 9503716686</span>
       </div>
+
+      <div className="flex items-center gap-1">
+        <Mail className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+        <span className="font-small">
+          csritikmadnani@gmail.com
+        </span>
+      </div>
+    </div>
+  </div>
 
       {/* Main navbar */}
       <div className="container flex h-18 items-center justify-between">
@@ -140,7 +152,7 @@ export function Navbar() {
           </Button>
 
           <button
-            className="md:hidden text-gray-800"
+            className="md:hidden  text-gray-800"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -154,7 +166,7 @@ export function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-16 left-0 right-0 bg-white/95 backdrop-blur-lg border-b border-gray-200"
+          className="md:hidden absolute top-18 left-0 right-0 bg-white/95 backdrop-blur-lg border-b border-gray-200"
         >
           <div className="container py-4 flex flex-col gap-2">
             {navItems.map((item) => (
